@@ -1,0 +1,19 @@
+
+<mat-toolbar color="primary">
+    Agregar Nota
+    <span class="flex-spacer"></span>
+    <button mat-button mat-dialog-close>&times;</button>
+</mat-toolbar>
+
+<mat-card>
+    <form (submit)="onAddNote(patient.id,NoteForm)" #NoteForm="ngForm">
+        <mat-form-field>
+    <textarea matInput rows="5" cols="200" required name=text placeholder="" ngModel></textarea>
+        </mat-form-field>
+    <div>
+            <button type="submit" mat-raised-button color="primary"> Guardar Nota </button>
+    </div>
+    <a mat-raised-button  (click)="goBack()"><span class='spacer'></span><span
+            class="fa fa-sign-in fa-lg"></span> Cancel</a>
+    </form>
+</mat-card>

@@ -1,0 +1,47 @@
+
+<a mat-raised-button 
+    color="primary" (click)="openCreatePatientForm()"><span class='spacer'></span><span class="fa fa-sign-in fa-lg"></span> Agregar paciente </a>
+
+<div class="example-header" fxFlex >
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+    </mat-form-field>
+</div>
+
+<div class="example-container mat-elevation-z8" fxFlex >
+
+    <mat-table [dataSource]="dataSource" matSort>
+
+        
+
+        <ng-container matColumnDef="Name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+            <mat-cell *matCellDef="let patient" [routerLink]="['/patientdetail', patient.id]"> {{patient.Name}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="lastName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Apellido </mat-header-cell>
+            <mat-cell *matCellDef="let patient"> {{patient.lastName}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Birthdate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de Nacimiento </mat-header-cell>
+            <mat-cell *matCellDef="let patient" [routerLink]="['/patientdetail', patient.id]"> {{patient.Birthdate| date:mediumDate}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+
+            <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+            <mat-cell *matCellDef="let patient" [routerLink]="['/patientdetail', patient.id]"> <a mat-button > ver</a> </mat-cell>>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;">
+        </mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+
+
+
