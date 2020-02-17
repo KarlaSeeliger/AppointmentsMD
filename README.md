@@ -1,5 +1,11 @@
 # AppointmentsMD
 
+Web app created for doctors to keep patient medical records organized. The app stores patients data and gives the user an easy interface to find and update patients medical records.
+
+In progress...
+
+MEAN stack: -angular -node.js -MongoDb -Express
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.22.
 
 ## Development server
