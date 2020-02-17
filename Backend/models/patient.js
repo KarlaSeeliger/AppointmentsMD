@@ -9,7 +9,7 @@ var PatientSchema = new mongoose.Schema({
     appointments: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "appointment",
-        //autopopulate: true
+        autopopulate: true
     }],
     Notes: [{
         type: mongoose.Schema.Types.ObjectId,

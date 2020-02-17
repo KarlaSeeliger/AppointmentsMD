@@ -15,6 +15,10 @@ export class ShowPatientDetailsComponent implements OnInit {
   @Input()
   patient: patient;
   id ="5e34ca278ef0d906bd049031";
+  arrlenght;
+  age;
+  Date;
+  
   constructor(private patientservice: PatientService,
     private route: ActivatedRoute,
     private location: Location, public dialog: MatDialog) { }
@@ -24,7 +28,9 @@ export class ShowPatientDetailsComponent implements OnInit {
      console.log(id);
     this.patient = this.patientservice.getSelectedPatient(id);
     console.log(this.patient)
-    
+    this.arrlenght = this.patient.notes.length;
+   
+
   }
 
   openAddNoteForm() {

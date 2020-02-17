@@ -7,6 +7,9 @@
     <mat-list fxFlex>
         <mat-list-item *ngFor="let appointment of appointments">
             <h1 matLine> {{appointment.date|date:mediumDate}} </h1>
+            <p matLine>{{appointment.patient[0].Name}}</p>
+            <p matLine [routerLink]="['/patientdetail', appointment.patient[0].id]"> <a mat-button> ver</a></p>
         </mat-list-item>
+        
     </mat-list>
 </div>

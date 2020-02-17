@@ -2,7 +2,7 @@ import {patient} from '../models/patient.model';
 import {note} from '../models/note.model';
 import {appointment } from '../models/appointment.model';
 
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpRequest} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Subject} from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -67,12 +67,12 @@ export class PatientService{
     
     getSelectedPatient(id: string): patient {
         return  this.patients.filter((patient) => (patient.id === id))[0];
-
     }
+    
 
     
-    updatePatientNotes(patientId:string, text: string) {
-        const note: note = { id: "", date: null, text: text};
+    updatePatientNotes(patientId: string, textS: string, textO: string, textA: string, textP: string, BPd: number, BPs: number, HR: number, Br: number, Temp: number, dx:string ) {
+        const note: note = { id: "", date: null, textS: textS, textO: textO, textA: textA, textP: textP, BPd: BPd, BPs: BPs, HR: HR, Temp: Temp, RR:Br,dx:dx };
         console.log(note);
         console.log(patientId);
         this.http.post<{ message: String; noteId: string; notedate: Date}>('http://localhost:3000/api/patients/addnote/'+patientId,note).subscribe((responseData) => {

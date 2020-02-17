@@ -16,7 +16,7 @@ export class AppointmentCreateComponent {
 
     onAddAppointment(form: NgForm) {
         console.log(form.value.date);
-        this.appointmentService.addAppointment(form.value.date);
+        this.appointmentService.addAppointmentToPatient(form.value.date, form.value.Name, form.value.lastName, form.value.Date, form.value.phoneNum);
         console.log(form.value.date);
         this.dialogRef.close();
     }

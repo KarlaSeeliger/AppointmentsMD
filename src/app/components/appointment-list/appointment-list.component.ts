@@ -20,6 +20,7 @@ export class AppointmentListComponent implements OnInit{
     appointments: appointment[];
     private appointmentSub: Subscription;
     selectedAppointment: appointment;
+    patientid=12321323;
 
 
     constructor(public appointmentService: appointmentService, public dialog: MatDialog) {
@@ -28,8 +29,9 @@ export class AppointmentListComponent implements OnInit{
 
     ngOnInit() {
        this.appointmentService.getAppointments();
-        this.appointmentSub = this.appointmentService.getAppointmentUpdateListener().subscribe((appointment: appointment[]) => { this.appointments = appointment });
-        console.log(this.appointments);
+        this.appointmentSub = this.appointmentService.getAppointmentUpdateListener().subscribe((appointment: appointment[]) => { this.appointments = appointment; console.log(appointment); });
+        
+        
 
     }
 

@@ -32,24 +32,82 @@ app.use((req, res, next) => {
     next();
 });
 
-
-
-app.post('/api/appointments', (req, res) => {
-    var date = req.body.date;
-    appointment.create({date: date}, (err, newappointment) => {
+app.post('/api/appointments/add', (req, res) => {
+    var name = "Raul";
+    var date="02/02/2020";
+  
+    
+    patient.find({Name: name}, function (err, patient) {
         if (err) {
             console.log(err);
         } else {
-            console.log("appointment added");
-            console.log(newappointment);
-            res.status(201).json({
-                message: 'appoirntment added',
-                appointmentId: newappointment._id
-            });
+            console.log(patient);
+            
+            appointment.create({date: date }, function (err, app) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log(app);
+                    app.patient.push(patient);
+                    console.log(app);
+                    patient.appointments.push(app);
+                    patient.save();
+                    console.log(app);
+                    res.status(201).json({
+                        message: 'post added',
+                        
+                    });
+                }
+            })
+        }
+    })
+});
+
+
+
+app.post('/api/appointments/newpatient', (req, res) => {
+    var obj=req.body;
+    console.log(obj);
+    var date = obj.date;
+    console.log(date);
+    var id = obj.id;
+    console.log(id);
+    var patientapp = obj.patient;
+    var name = patientapp[0].Name;
+    var lastName = patientapp[0].lastName;
+    var birth = patientapp[0].Birthdate;
+    var PhoneNum = patientapp[0].phoneNum;
+    var addpatient = { Name: name, lastName: lastName, Birthdate: birth, PhoneNum: PhoneNum};
+    patient.create(addpatient,(err,newpatient)=>{
+        if(err){
+        console.log(err);}
+        else{
+            console.log("patient" +newpatient);
+            appointment.create({ date: date }, (err, newappointment) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log("appointment"+newappointment);
+                    newappointment.patient.push(newpatient);
+                    newappointment.save();
+                    newpatient.appointments.push(newappointment);
+                    newappointment.save();
+                    newpatient.save();
+                    console.log("appointment added");
+                    console.log(newappointment);
+                    res.status(201).json({
+                        message: 'appoirntment added',
+                        appointmentId: newappointment._id,
+                        patientId: patient._id  
+                    });
+
+            }})
+   
         }
 
     })
 });
+
 
      
 app.post('/api/patients', (req, res) => {
@@ -103,10 +161,19 @@ app.post('/api/patients/addnote/:id',(req, res) => {
                 console.log(err);
             } else {
                 console.log(patient);
-                var text = req.body.text;
+                var textS = req.body.textS;
+                var textO = req.body.textO;
+                var textA = req.body.textA;
+                var textP = req.body.textP;
                 var date = Date.now();
+                var BPs = req.body.BPs;
+                var BPd = req.body.BPd;
+                var HR = req.body.HR;
+                var Temp = req.body.Temp;
+                var Br = req.body.RR;
+                var dx= req.body.dx;
                 console.log(date);
-                note.create({ date: date, text: text }, function (err, note) {
+                note.create({ date: date, textS: textS, textO: textO, textA: textA, textP: textP, BPd: BPd, BPs: BPs, HR: HR, Temp: Temp, RR: Br, dx: dx }, function (err, note) {
                     if (err) {
                         console.log(err);
                     } else {

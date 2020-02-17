@@ -16,6 +16,7 @@ import { Location } from '@angular/common';
 export class AddNoteComponent implements OnInit {
 
   patientId;
+  arrlenght
   public patient:patient;
   constructor(public patientsService: PatientService, public route: ActivatedRoute, public dialog: MatDialog, public router:Router,
     private location: Location) { }
@@ -25,12 +26,15 @@ export class AddNoteComponent implements OnInit {
       if (paramMap.has("patientId")) {
         this.patientId = paramMap.get("patientId");
         this.patient=this.patientsService.getSelectedPatient(this.patientId);
+        
         console.log("paciente de formular"+this.patientId)
         
         }});
   }
-  onAddNote(PatientId:string, form: NgForm) {
-    this.patientsService.updatePatientNotes(PatientId, form.value.text);
+  onAddNote(PatientId: string, form: NgForm) {
+    this.patientsService.updatePatientNotes(PatientId, form.value.textS, form.value.textO, 
+      form.value.textA, form.value.textP, form.value.BPs, form.value.BPd, 
+      form.value.HR, form.value.RR, form.value.Temp, form.value.dx);
     this.location.back()
   }
 

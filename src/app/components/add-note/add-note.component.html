@@ -1,19 +1,65 @@
 
 <mat-toolbar color="primary">
-    Agregar Nota
+    Add Note
     <span class="flex-spacer"></span>
     <button mat-button mat-dialog-close>&times;</button>
 </mat-toolbar>
 
 <mat-card>
     <form (submit)="onAddNote(patient.id,NoteForm)" #NoteForm="ngForm">
+    <div class="row">
+        <div class="col-lg-3">
+        <label> Vital Signs</label>
+         </div>
+        <div class="col-lg-3" style="display: inline;" >
+        <mat-form-field  >
+        <input  matInput type="text"  name=BPs placeholder="Systolic blood preasure" ngModel>
+        </mat-form-field>
+        </div>
+        <div class="col-lg-3">
         <mat-form-field>
-    <textarea matInput rows="5" cols="200" required name=text placeholder="" ngModel></textarea>
+        <input  matInput type="text"  name=BPd placeholder="Dyastolic blood preasure" ngModel>
+        </mat-form-field>
+        </div>
+        <div class="col-lg-3">
+        <mat-form-field>
+        <input matInput type="text"  name=HR placeholder="Heart rate" ngModel>
+        </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+        <mat-form-field>
+        <input matInput type="text" name=RR placeholder="Respiratory rate" ngModel>
+        </mat-form-field>
+        </div>
+        <div class="col-lg-3">
+        <mat-form-field>
+        <input matInput type="text" name=Temp placeholder="Temperature" ngModel>
+        </mat-form-field>
+        </div>
+    </div>
+     
+        <mat-form-field>
+         <input matInput type="text" name=RR placeholder="Respiratory rate" ngModel>
+        </mat-form-field>
+        <label> Diagnosis</label>
+        <mat-form-field>
+    <textarea matInput rows="5" cols="200" required name=dx placeholder="dx" ngModel></textarea>
+        </mat-form-field>
+        <mat-form-field>
+            <textarea matInput rows="5" cols="200" required name=textO placeholder="O" ngModel></textarea>
+        </mat-form-field>
+        <mat-form-field>
+            <textarea matInput rows="5" cols="200" required name=textA placeholder="A" ngModel></textarea>
+        </mat-form-field>
+        <mat-form-field>
+            <textarea matInput rows="5" cols="200" required name=textP placeholder="P" ngModel></textarea>
         </mat-form-field>
     <div>
-            <button type="submit" mat-raised-button color="primary"> Guardar Nota </button>
+            <button type="submit" mat-raised-button color="primary"> Save  </button>
+            <a mat-raised-button (click)="goBack()"><span class='spacer'></span><span class="fa fa-sign-in fa-lg"></span> Cancel</a>
     </div>
-    <a mat-raised-button  (click)="goBack()"><span class='spacer'></span><span
-            class="fa fa-sign-in fa-lg"></span> Cancel</a>
+    
     </form>
 </mat-card>
